@@ -37,8 +37,6 @@ jobs:
 
       - name: Install Updatecli
         uses: ./
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Test local action without install-only
         run: fslabscli generate-release-workflow --output .github/workflows/release.yml
