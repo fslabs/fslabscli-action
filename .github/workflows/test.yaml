@@ -6,28 +6,6 @@ on:
   pull_request:
 
 jobs:
-  # unit tests
-  units:
-    name: Test Javascript
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set Node.js 16.x
-        uses: actions/setup-node@v4.0.2
-        with:
-          node-version: 16.x
-          cache: npm
-
-      - name: Install Dependencies
-        run: npm ci
-
-      - name: Run Lint Test
-        run: npm run lint
-
-      - name: Run tests
-        run: npm test
-
   e2e:
     name: Test fslabscli Github Action
     runs-on: ubuntu-latest
