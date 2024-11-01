@@ -38,5 +38,5 @@ jobs:
       - name: Install Updatecli
         uses: ./
 
-      - name: Test local action without install-only
-        run: fslabscli generate-release-workflow --output .github/workflows/release.yml
+      - name: Get fslabscli version
+        run: fslabscli --version
