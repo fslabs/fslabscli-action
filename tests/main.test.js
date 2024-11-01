@@ -48,10 +48,10 @@ describe('main', () => {
     await run()
     const file = path.join(
       cachePath,
-      'fslabscli',
+      'cargo-fslabscli',
       versionWithoutV,
       process.arch,
-      'fslabscli'
+      'cargo-fslabscli'
     )
     const fileStat = await fs.stat(file)
     expect(fileStat.isFile()).toBe(true)
@@ -89,10 +89,10 @@ describe('main', () => {
     await fslabscliDownload()
     const file = path.join(
       cachePath,
-      'fslabscli',
+      'cargo-fslabscli',
       versionWithoutV,
       process.arch,
-      'fslabscli'
+      'cargo-fslabscli'
     )
     const fileStat = await fs.stat(file)
     expect(fileStat.isFile()).toBe(true)
