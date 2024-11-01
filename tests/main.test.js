@@ -18,7 +18,7 @@ const actionYaml = yaml.load(
   await fs.readFile(path.join(directory, '../action.yaml'))
 )
 const version = actionYaml.inputs.version.default
-const versionWithoutV = version.slice(1)
+const versionWithoutV = version.startsWith('v') ? version.slice(1) : version
 
 process.env['INPUT_VERSION'] = version
 const originalPlatform = process.platform
