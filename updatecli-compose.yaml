@@ -9,6 +9,6 @@ policies:
     values:
       - updatecli/values.d/scm.yaml
   - name: Handle NPM
-    policy: ghcr.io/updatecli/policies/autodiscovery/npm:0.11.0
+    policy: ghcr.io/updatecli/policies/autodiscovery/npm:0.11.0@sha256:f5df5357738270ed51804ad175d892a86b34b08482086a25189a9b23a456ccf0
     values:
       - updatecli/values.d/scm.yaml
