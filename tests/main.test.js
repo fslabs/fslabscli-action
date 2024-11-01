@@ -21,6 +21,8 @@ const version = actionYaml.inputs.version.default
 const versionWithoutV = version.startsWith('v') ? version.slice(1) : version
 
 process.env['INPUT_VERSION'] = version
+process.env['INPUT_TOKEN'] = process.env.GITHUB_TOKEN
+
 const originalPlatform = process.platform
 const originalArch = process.arch
 
