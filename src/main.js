@@ -11,7 +11,7 @@ export async function fslabscliDownload() {
     {
       arch: 'x64',
       platform: 'linux',
-      name: `fslabscli-x86_64-unknown-linux-gnu-1.75-v${version}`,
+      name: 'fslabscli-x86_64-linux',
     },
   ]
 
