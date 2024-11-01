@@ -1,45 +1,44 @@
 pipelineid: version
 name: Bump fslabscli version
 actions:
-    default:
-        title: Bump fslabscli version to {{ source "fslabscli" }}
-        kind: github/pullrequest
-        spec:
-            automerge: true
-            mergemethod: squash
-            usetitleforautomerge: true
-            labels:
-                - dependencies
-                - updatecli
-        scmid: default
+  default:
+    title: Bump fslabscli version to {{ source "fslabscli" }}
+    kind: github/pullrequest
+    spec:
+      automerge: true
+      mergemethod: squash
+      usetitleforautomerge: true
+      labels:
+        - dependencies
+        - updatecli
+    scmid: default
 scms:
-    default:
-        kind: github
-        spec:
-            branch: v1
-            email: devops@fslabs.ca
-            owner: ForesightMiningSoftwareCorporation
-            repository: fslabsci-action
-            token: '{{requiredEnv "UPDATECLI_GITHUB_TOKEN"}}'
-            user: ForesightMiningSoftwareCorporation
-            username: github-actions
-        disabled: false
+  default:
+    kind: github
+    spec:
+      branch: "{{ .scm.branch }}"
+      email: "{{ .scm.email }}"
+      owner: "{{ .scm.owner }}"
+      repository: "{{ .scm.repository }}"
+      username: '{{ requiredEnv "GITHUB_ACTOR" }}'
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      commitusingapi: true
 sources:
-    fslabscli:
-        name: Get latest fslabscli version
-        kind: githubrelease
-        spec:
-            owner: ForesightMiningSoftwareCorporation
-            repository: fslabscli
-            token: '{{requiredEnv "UPDATECLI_GITHUB_TOKEN"}}'
-        transformers:
-            - trimprefix: "cargo-fslabscli-"
+  fslabscli:
+    name: Get latest fslabscli version
+    kind: githubrelease
+    spec:
+      owner: ForesightMiningSoftwareCorporation
+      repository: fslabscli
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+    transformers:
+      - trimprefix: "cargo-fslabscli-"
 targets:
-    action:
-        name: Bump fslabscli version in action.yaml
-        kind: yaml
-        spec:
-            file: action.yaml
-            key: inputs.version.default
-        scmid: default
-        sourceid: fslabscli
+  action:
+    name: Bump fslabscli version in action.yaml
+    kind: yaml
+    spec:
+      file: action.yaml
+      key: $.inputs.version.default
+    scmid: default
+    sourceid: fslabscli
