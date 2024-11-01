@@ -18,9 +18,11 @@ const actionYaml = yaml.load(
   await fs.readFile(path.join(directory, '../action.yaml'))
 )
 const version = actionYaml.inputs.version.default
-const versionWithoutV = version.slice(1)
+const versionWithoutV = version.startsWith('v') ? version.slice(1) : version
 
 process.env['INPUT_VERSION'] = version
+process.env['INPUT_TOKEN'] = process.env.GITHUB_TOKEN
+
 const originalPlatform = process.platform
 const originalArch = process.arch
 
@@ -46,10 +48,10 @@ describe('main', () => {
     await run()
     const file = path.join(
       cachePath,
-      'fslabscli',
+      'cargo-fslabscli',
       versionWithoutV,
       process.arch,
-      'fslabscli'
+      'cargo-fslabscli'
     )
     const fileStat = await fs.stat(file)
     expect(fileStat.isFile()).toBe(true)
@@ -87,10 +89,10 @@ describe('main', () => {
     await fslabscliDownload()
     const file = path.join(
       cachePath,
-      'fslabscli',
+      'cargo-fslabscli',
       versionWithoutV,
       process.arch,
-      'fslabscli'
+      'cargo-fslabscli'
     )
     const fileStat = await fs.stat(file)
     expect(fileStat.isFile()).toBe(true)
