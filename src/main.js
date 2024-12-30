@@ -11,7 +11,12 @@ export async function fslabscliDownload() {
     {
       arch: 'x64',
       platform: 'linux',
-      name: 'cargo-fslabscli-x86_64-linux',
+      name: 'cargo-fslabscli-x86_64-unknown-linux-musl',
+    },
+    {
+      arch: 'arm64',
+      platform: 'darwin',
+      name: 'cargo-fslabscli-aarch64-apple-darwin',
     },
   ]
 
