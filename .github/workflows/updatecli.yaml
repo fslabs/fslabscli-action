@@ -1,38 +1,42 @@
----
 name: updatecli
-
 on:
+  release:
   workflow_dispatch:
   push:
-    branches:
-      - v1
+    branches: [v1]
+  pull_request:
+    branches: [v1]
   schedule:
-    # Run once a day
+    # Run every day
     - cron: '0 0 * * *'
 
-permissions:
-  contents: write
-  pull-requests: write
+permissions: {}
 
 jobs:
   updatecli:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    permissions:
+      contents: read
 
+    steps:
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
       - name: 'Setup updatecli'
         uses: 'updatecli/updatecli-action@v2'
-
       - name: 'Run updatecli in dryrun'
-        run: 'updatecli diff --config ./updatecli/updatecli.d --experimental --clean=true'
+        run: 'updatecli compose diff'
         env:
-          UPDATECLI_GITHUB_ACTOR: ${{ github.actor }}
-          UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+          GITHUB_ACTOR: ${{ github.actor }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/create-github-app-token@v1.11.3
+        id: generate_token
+        if: github.ref == 'refs/heads/v1'
+        with:
+          app-id: ${{ secrets.FMSC_BOT_GITHUB_APP_ID }}
+          private-key: ${{ secrets.FMSC_BOT_GITHUB_APP_PRIVATE_KEY }}
       - name: 'Run updatecli'
         if: github.ref == 'refs/heads/v1'
-        run: 'updatecli apply --config ./updatecli/updatecli.d --experimental --clean=true'
+        run: 'updatecli compose apply'
         env:
-          UPDATECLI_GITHUB_ACTOR: ${{ github.actor }}
-          UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: 'fsl-bot'
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}

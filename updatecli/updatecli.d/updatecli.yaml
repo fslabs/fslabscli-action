@@ -16,10 +16,10 @@ scms:
   default:
     kind: github
     spec:
-      branch: "{{ .scm.branch }}"
-      email: "{{ .scm.email }}"
-      owner: "{{ .scm.owner }}"
-      repository: "{{ .scm.repository }}"
+      branch: '{{ .scm.branch }}'
+      email: '{{ .scm.email }}'
+      owner: '{{ .scm.owner }}'
+      repository: '{{ .scm.repository }}'
       username: '{{ requiredEnv "GITHUB_ACTOR" }}'
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
       commitusingapi: true
@@ -31,8 +31,13 @@ sources:
       owner: ForesightMiningSoftwareCorporation
       repository: fslabscli
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      typefilter:
+        latest: true
+      versionfilter:
+        kind: latest
     transformers:
-      - trimprefix: "cargo-fslabscli-"
+      - trimprefix: 'cargo-fslabscli-'
+
 targets:
   action:
     name: Bump fslabscli version in action.yaml
