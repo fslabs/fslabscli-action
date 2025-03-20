@@ -49,16 +49,16 @@ jobs:
         # Prefix the list here with "+" to use these queries and those in the config file.
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
-        uses: github/codeql-action/autobuild@v3
-      # ✏️ If the Autobuild fails above, remove it and uncomment the following three lines
-      #    and modify them (or add more) to build your code if your project
-      #    uses a compiled language
-
+        uses: github/codeql-action/autobuild@v3.28.12
       #- run: |
       #   make bootstrap
       #   make release
       - name: Perform CodeQL Analysis
         # ℹ️ Command-line programs to run using the OS shell.
         # 📚 https://git.io/JvXDl
+
+        # ✏️ If the Autobuild fails above, remove it and uncomment the following three lines
+        #    and modify them (or add more) to build your code if your project
+        #    uses a compiled language
 
         uses: github/codeql-action/analyze@v3
