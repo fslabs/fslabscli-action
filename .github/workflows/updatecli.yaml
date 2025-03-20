@@ -9,18 +9,15 @@ on:
   schedule:
     # Run every day
     - cron: '0 0 * * *'
-
 permissions: {}
-
 jobs:
   updatecli:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-
     steps:
       - name: 'Checkout'
-        uses: 'actions/checkout@v4'
+        uses: 'actions/checkout@v4.2.2'
       - name: 'Setup updatecli'
         uses: 'updatecli/updatecli-action@v2'
       - name: 'Run updatecli in dryrun'
@@ -28,7 +25,7 @@ jobs:
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/create-github-app-token@v1.11.3
+      - uses: actions/create-github-app-token@v1.11.7
         id: generate_token
         if: github.ref == 'refs/heads/v1'
         with:
