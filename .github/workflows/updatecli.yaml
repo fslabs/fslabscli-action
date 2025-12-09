@@ -25,7 +25,7 @@ jobs:
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/create-github-app-token@v1.11.7
+      - uses: actions/create-github-app-token@v2.2.1
         id: generate_token
         if: github.ref == 'refs/heads/v1'
         with:
