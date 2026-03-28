@@ -5,14 +5,14 @@ policies:
     values:
       - updatecli/values.d/scm.yaml
   - name: Handle Updatecli Policy Updates
-    policy: ghcr.io/updatecli/policies/autodiscovery/updatecli:0.8.0@sha256:99e9e61b501575c2c176c39f2275998d198b590a3f6b1fe829f7315f8d457e7f
+    policy: ghcr.io/updatecli/policies/autodiscovery/updatecli:0.11.1@sha256:de145eea3f42312f4d1fdedb562adc36adcd54d7568f230ae71f931cc5288321
     values:
       - updatecli/values.d/scm.yaml
   - name: Handle NPM
-    policy: ghcr.io/updatecli/policies/autodiscovery/npm:0.11.0@sha256:f5df5357738270ed51804ad175d892a86b34b08482086a25189a9b23a456ccf0
+    policy: ghcr.io/updatecli/policies/autodiscovery/npm:0.14.1@sha256:3b3b2f19e221b94a080991bc1f58d605d3c71ee8a8875bc7d81ed5fa25db68f1
     values:
       - updatecli/values.d/scm.yaml
   - name: Update githubactions
-    policy: ghcr.io/updatecli/policies/autodiscovery/githubaction:0.1.0@sha256:ddac4fc192800a65e9a92669600db3eb66fe442610073d34202513b265ba7b29
+    policy: ghcr.io/updatecli/policies/autodiscovery/githubaction:0.4.1@sha256:869b676074f9fee7edd5d488140a12c3b09a5f8a175f12f26ea85a4f8bd0a9d1
     values:
       - updatecli/values.d/scm.yaml
