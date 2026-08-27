@@ -17,15 +17,15 @@ jobs:
       contents: read
     steps:
       - name: 'Checkout'
-        uses: 'actions/checkout@v4.2.2'
+        uses: 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' # v7.0.1
       - name: 'Setup updatecli'
-        uses: 'updatecli/updatecli-action@v2'
+        uses: 'updatecli/updatecli-action@8f943416e0174f7029a718eb46a18657e17ebaff' # v2
       - name: 'Run updatecli in dryrun'
         run: 'updatecli compose diff'
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/create-github-app-token@v1.11.7
+      - uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         id: generate_token
         if: github.ref == 'refs/heads/v1'
         with:
